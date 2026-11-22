@@ -6,7 +6,7 @@
 //
 // Outside the grader, MAKEFUN_OUTPUT_DIR stands in for /output.
 
-import { cpSync, existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-game.ts';
@@ -14,8 +14,6 @@ import { buildDossier } from './vendor/makefun-game.ts';
 const REPO = resolve(join(fileURLToPath(import.meta.url), '..'));
 const OUT = resolve(process.env.MAKEFUN_OUTPUT_DIR || '/output');
 
-// Start clean so a second run cannot leave stale files behind.
-rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
 
 cpSync(join(REPO, 'game'), join(OUT, 'game'), { recursive: true });
